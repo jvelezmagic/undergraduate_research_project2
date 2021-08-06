@@ -12,12 +12,10 @@ documentclass: book
 #bibliography: [bibliography/references.bib, bibliography/additional-references.bib]
 ---
 
-```{block type='savequote', quote_author='(ref:cicero-quote)', include=knitr::is_latex_output()}
-Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...
-
-There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain...
+```{block type='savequote', quote_author='(ref:george-ep)', include=knitr::is_latex_output()}
+All model are wrong but some are useful
 ```
-(ref:cicero-quote) --- Cicero's *de Finibus Bonorum et Malorum*.
+(ref:george-ep) --- George E.P. Box.
 
 <!-- 
 Notes for adding an opening quote in PDF output:
@@ -26,13 +24,34 @@ ii) include=knitr::opts_knit$get('rmarkdown.pandoc.to') == 'latex' means that th
 iii) You can't use markdown syntax inside chunk options, so if you want to e.g. italicise a book name in the quote reference use a 'text reference': Create a named piece of text with '(ref:label-name) My text', then link to this in the chunk option with quote_author='(ref:label-name)'
 -->
 
-# R Markdown basics {#rmd-basics}
+# Models to the rescue; filamentation abstraction {#rmd-basics}
 \minitoc <!-- this will include a mini table of contents-->
 
 <!-- LaTeX normally does not indent the first line after a heading - however, it does so after the mini table of contents. You can manually tell it not to with \noindent -->
-\noindent Here is a brief introduction to using *R Markdown*. 
-*Markdown* is a simple formatting syntax for authoring HTML, PDF, and MS Word documents and much, much more. 
-*R Markdown* provides the flexibility of *Markdown* with the implementation of **R** input and output.  For more details on using *R Markdown* see <http://rmarkdown.rstudio.com>.
+\noindent Scientists have extensively studied the mechanisms that orchestrate the growth and division of bacterial cells. Cells adapt their shape and dimensions in response to variations in the intracellular and extracellular environments by integrating information about the presence of nutrients or harmful agents in the decision to grow or divide. Filamentation is a process that occurs when rod-shaped cells stop dividing but continue to grow, thus producing elongated cells. Some cells can naturally grow as filamentous, while others only do so under stressful conditions. Here we use mathematical modeling and computational simulations to evaluate a toxic agent’s intracellular concentration as a function of cell length. We show that filamentation can act as a strategy that promotes the resilience of a bacterial population under stressful environmental conditions.
+
+## Introduction
+
+By integrating information from the environment, cells can alter their cell cycle. For instance, some cells arrest the cell division in the presence of toxic agents but continue to grow. Previous studies have shown that this filamentation phenomenon provides a mechanism that enables cells to cope with stress, which leads to an increase in the probability of survival [1]. For example, filamentation can be a process capable of subverting innate defenses during urinary tract infection, facilitating the transition of additional rounds of intracellular bacterial community formation [2].
+
+Although filament growth can help mitigate environmental stress (e.g., by activating the SOS response system [1]), the evolutionary benefits of producing elongated cells that do not divide are unclear. Here, we proposed a mathematical model based on ordinary differential equations that explicitly considers the concentration of intracellular toxin as a function of the cell’s length (see Equation 1). The model is built based on the growth ratio of measurements of the surface area (SA) and the cell volume (V), whereby the uptake rate of the toxin depends on the SA. However, V's rate of change for SA is higher than SA for V, which results in a transient reduction in the intracellular toxin concentration. Therefore, we hypothesized that this geometric interpretation of filamentation represents a biophysical defense line to increase the probability of a bacterial population’s survival in response to stressful environments.
+
+## Filamentation model
+
+Let us assume the shape of cells is a cylinder with hemispherical ends. Based on this geometric structure, a nonlinear system of differential equations governing filamentation can be written as follows (see Equation 1):
+
+\begin{equation} \label{model-equation}
+\begin{split}
+\frac{dT_{int}}{dt} &= T_{sa} \cdot (T_{ext}(t) - T_{vol}) - \alpha \cdot T_{ant} \cdot T_{int} \\
+\frac{dL}{dt} &= 
+  \begin{cases} 
+    \beta \cdot L,& \text{if } T_{int} \geq T_{sos} \text{ and } L < L_{max}  \\
+    0,            & \text{otherwise}
+  \end{cases}
+\end{split}
+\end{equation}
+
+It considers the internal toxin ($T_{int}$) and the cell length ($L$) as variables. $T_{sa}$ and $T_{vol}$ represent the surface area and volume of the toxin in the cell, respectively. $T_{ext}(t)$ is a function that returns the amount of toxin in the cell medium. $T_{anti}$ and $\alpha$ symbolize the amount of antitoxin and its efficiency rate, respectively. $\beta$ as the rate of filamentation. $L_{max}$ is the maximum size that the cell can reach when filamentation is on. $T_{sos}$ and $T_{kill}$ are thresholds for filamentation and death, respectively. Finally, $\tau_{delay}$ is the amount of time required to activate filamentation after reaching the $T_{sos}$ threshold.
 
 
 ## Basic markdown syntax

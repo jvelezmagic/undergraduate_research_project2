@@ -307,7 +307,7 @@
 
 %%%%% DEDICATION -- If you'd like one, un-comment the following.
 \begin{dedication}
-  For Yihui Xie
+  For\ldots{}
 \end{dedication}
 
 %%%%% ACKNOWLEDGEMENTS -- Nothing to do here except comment out if you don't want it.
@@ -700,23 +700,42 @@ As shown in the sample chapters' YAML headers, to output a single chapter to PDF
 The file \textbf{templates/brief\_template.tex} formats the chapter in the OxThesis style but without including the front matter (table of contents, abstract, etc).
 
 \begin{savequote}
-Neque porro quisquam est qui dolorem ipsum quia dolor sit amet,
-consectetur, adipisci velit\ldots{}
-
-There is no one who loves pain itself, who seeks after it and wants to
-have it, simply because it is pain\ldots{}
-\qauthor{--- Cicero's \emph{de Finibus Bonorum et Malorum}.}\end{savequote}
+All model are wrong but some are useful
+\qauthor{--- George E.P. Box.}\end{savequote}
 
 
 
 \hypertarget{rmd-basics}{%
-\chapter{R Markdown basics}\label{rmd-basics}}
+\chapter{Models to the rescue; filamentation abstraction}\label{rmd-basics}}
 
 \minitoc 
 
-\noindent Here is a brief introduction to using \emph{R Markdown}.
-\emph{Markdown} is a simple formatting syntax for authoring HTML, PDF, and MS Word documents and much, much more.
-\emph{R Markdown} provides the flexibility of \emph{Markdown} with the implementation of \textbf{R} input and output. For more details on using \emph{R Markdown} see \url{http://rmarkdown.rstudio.com}.
+\noindent Scientists have extensively studied the mechanisms that orchestrate the growth and division of bacterial cells. Cells adapt their shape and dimensions in response to variations in the intracellular and extracellular environments by integrating information about the presence of nutrients or harmful agents in the decision to grow or divide. Filamentation is a process that occurs when rod-shaped cells stop dividing but continue to grow, thus producing elongated cells. Some cells can naturally grow as filamentous, while others only do so under stressful conditions. Here we use mathematical modeling and computational simulations to evaluate a toxic agent's intracellular concentration as a function of cell length. We show that filamentation can act as a strategy that promotes the resilience of a bacterial population under stressful environmental conditions.
+
+\hypertarget{introduction-1}{%
+\section{Introduction}\label{introduction-1}}
+
+By integrating information from the environment, cells can alter their cell cycle. For instance, some cells arrest the cell division in the presence of toxic agents but continue to grow. Previous studies have shown that this filamentation phenomenon provides a mechanism that enables cells to cope with stress, which leads to an increase in the probability of survival {[}1{]}. For example, filamentation can be a process capable of subverting innate defenses during urinary tract infection, facilitating the transition of additional rounds of intracellular bacterial community formation {[}2{]}.
+
+Although filament growth can help mitigate environmental stress (e.g., by activating the SOS response system {[}1{]}), the evolutionary benefits of producing elongated cells that do not divide are unclear. Here, we proposed a mathematical model based on ordinary differential equations that explicitly considers the concentration of intracellular toxin as a function of the cell's length (see Equation 1). The model is built based on the growth ratio of measurements of the surface area (SA) and the cell volume (V), whereby the uptake rate of the toxin depends on the SA. However, V's rate of change for SA is higher than SA for V, which results in a transient reduction in the intracellular toxin concentration. Therefore, we hypothesized that this geometric interpretation of filamentation represents a biophysical defense line to increase the probability of a bacterial population's survival in response to stressful environments.
+
+\hypertarget{filamentation-model}{%
+\section{Filamentation model}\label{filamentation-model}}
+
+Let us assume the shape of cells is a cylinder with hemispherical ends. Based on this geometric structure, a nonlinear system of differential equations governing filamentation can be written as follows (see Equation 1):
+
+\begin{equation} \label{model-equation}
+\begin{split}
+\frac{dT_{int}}{dt} &= T_{sa} \cdot (T_{ext}(t) - T_{vol}) - \alpha \cdot T_{ant} \cdot T_{int} \\
+\frac{dL}{dt} &= 
+  \begin{cases} 
+    \beta \cdot L,& \text{if } T_{int} \geq T_{sos} \text{ and } L < L_{max}  \\
+    0,            & \text{otherwise}
+  \end{cases}
+\end{split}
+\end{equation}
+
+It considers the internal toxin (\(T_{int}\)) and the cell length (\(L\)) as variables. \(T_{sa}\) and \(T_{vol}\) represent the surface area and volume of the toxin in the cell, respectively. \(T_{ext}(t)\) is a function that returns the amount of toxin in the cell medium. \(T_{anti}\) and \(\alpha\) symbolize the amount of antitoxin and its efficiency rate, respectively. \(\beta\) as the rate of filamentation. \(L_{max}\) is the maximum size that the cell can reach when filamentation is on. \(T_{sos}\) and \(T_{kill}\) are thresholds for filamentation and death, respectively. Finally, \(\tau_{delay}\) is the amount of time required to activate filamentation after reaching the \(T_{sos}\) threshold.
 
 \hypertarget{basic-markdown-syntax}{%
 \section{Basic markdown syntax}\label{basic-markdown-syntax}}
