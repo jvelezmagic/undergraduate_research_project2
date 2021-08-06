@@ -700,7 +700,7 @@ As shown in the sample chapters' YAML headers, to output a single chapter to PDF
 The file \textbf{templates/brief\_template.tex} formats the chapter in the OxThesis style but without including the front matter (table of contents, abstract, etc).
 
 \begin{savequote}
-All model are wrong but some are useful
+Essentially, all models are wrong, but some are useful
 \qauthor{--- George E.P. Box.}\end{savequote}
 
 
@@ -717,471 +717,76 @@ All model are wrong but some are useful
 
 By integrating information from the environment, cells can alter their cell cycle. For instance, some cells arrest the cell division in the presence of toxic agents but continue to grow. Previous studies have shown that this filamentation phenomenon provides a mechanism that enables cells to cope with stress, which leads to an increase in the probability of survival {[}1{]}. For example, filamentation can be a process capable of subverting innate defenses during urinary tract infection, facilitating the transition of additional rounds of intracellular bacterial community formation {[}2{]}.
 
-Although filament growth can help mitigate environmental stress (e.g., by activating the SOS response system {[}1{]}), the evolutionary benefits of producing elongated cells that do not divide are unclear. Here, we proposed a mathematical model based on ordinary differential equations that explicitly considers the concentration of intracellular toxin as a function of the cell's length (see Equation 1). The model is built based on the growth ratio of measurements of the surface area (SA) and the cell volume (V), whereby the uptake rate of the toxin depends on the SA. However, V's rate of change for SA is higher than SA for V, which results in a transient reduction in the intracellular toxin concentration. Therefore, we hypothesized that this geometric interpretation of filamentation represents a biophysical defense line to increase the probability of a bacterial population's survival in response to stressful environments.
+Although filament growth can help mitigate environmental stress (e.g., by activating the SOS response system {[}1{]}), the evolutionary benefits of producing elongated cells that do not divide are unclear. Here, we proposed a mathematical model based on ordinary differential equations that explicitly considers the concentration of intracellular toxin as a function of the cell's length (see Equation \eqref{eq:model-equation}). The model is built based on the growth ratio of measurements of the surface area (SA) and the cell volume (V), whereby the uptake rate of the toxin depends on the SA. However, V's rate of change for SA is higher than SA for V, which results in a transient reduction in the intracellular toxin concentration (\href{}{See Figure 1)}). Therefore, we hypothesized that this geometric interpretation of filamentation represents a biophysical defense line to increase the probability of a bacterial population's survival in response to stressful environments.
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=0.75\linewidth]{downloadFigs4latex__main/unnamed-chunk-5} 
+
+}
+
+\caption{Do something coooooool}\label{fig:unnamed-chunk-5}
+\end{figure}
 
 \hypertarget{filamentation-model}{%
 \section{Filamentation model}\label{filamentation-model}}
 
-Let us assume the shape of cells is a cylinder with hemispherical ends. Based on this geometric structure, a nonlinear system of differential equations governing filamentation can be written as follows (see Equation 1):
+Let us assume the shape of cells is a cylinder with hemispherical ends. Based on this geometric structure, a nonlinear system of differential equations governing filamentation can be written as follows:
 
-\begin{equation} \label{model-equation}
+\begin{equation}
 \begin{split}
 \frac{dT_{int}}{dt} &= T_{sa} \cdot (T_{ext}(t) - T_{vol}) - \alpha \cdot T_{ant} \cdot T_{int} \\
 \frac{dL}{dt} &= 
   \begin{cases} 
-    \beta \cdot L,& \text{if } T_{int} \geq T_{sos} \text{ and } L < L_{max}  \\
+    \beta \cdot L,& \text{if } T_{int} \geq T_{sos},  t \geq \tau_{sos} + \tau_{delay} \text{ and } L < L_{max}  \\
     0,            & \text{otherwise}
   \end{cases}
 \end{split}
+\label{eq:model-equation}
 \end{equation}
 
 It considers the internal toxin (\(T_{int}\)) and the cell length (\(L\)) as variables. \(T_{sa}\) and \(T_{vol}\) represent the surface area and volume of the toxin in the cell, respectively. \(T_{ext}(t)\) is a function that returns the amount of toxin in the cell medium. \(T_{anti}\) and \(\alpha\) symbolize the amount of antitoxin and its efficiency rate, respectively. \(\beta\) as the rate of filamentation. \(L_{max}\) is the maximum size that the cell can reach when filamentation is on. \(T_{sos}\) and \(T_{kill}\) are thresholds for filamentation and death, respectively. Finally, \(\tau_{delay}\) is the amount of time required to activate filamentation after reaching the \(T_{sos}\) threshold.
 
-\hypertarget{basic-markdown-syntax}{%
-\section{Basic markdown syntax}\label{basic-markdown-syntax}}
-
-\hypertarget{whitespace}{%
-\subsection{Whitespace}\label{whitespace}}
-
-Be careful with your spacing.
-While whitespace largely is ignored, it does at times give markdown signals as to how to proceed.
-As a habit, try to keep everything left aligned whenever possible, especially as you type a new paragraph.
-In other words, there is no need to indent basic text in the Rmd document (in fact, it might cause your text to do funny things if you do).
-
-\hypertarget{italics-and-bold}{%
-\subsection{Italics and bold}\label{italics-and-bold}}
-
-\begin{itemize}
-\tightlist
-\item
-  \emph{Italics} are done like *this* or \_this\_
-\item
-  \textbf{Bold} is done like **this** or \_\_this\_\_
-\item
-  \textbf{\emph{Bold and italics}} is done like ***this***, \_\_\_this\_\_\_, or (the most transparent solution, in my opinion) **\_this\_**
-\end{itemize}
-
-\hypertarget{inline-code}{%
-\subsection{Inline code}\label{inline-code}}
-
-\begin{itemize}
-\tightlist
-\item
-  \texttt{Inline\ code} is created with backticks like \texttt{\textasciigrave{}this\textasciigrave{}}
-\end{itemize}
-
-\hypertarget{sub-and-superscript}{%
-\subsection{Sub and superscript}\label{sub-and-superscript}}
-
-Sub\textsubscript{2} and super\textsuperscript{2} script is created like this\textasciitilde2\textasciitilde{} and this\^{}2\^{}
-
-\hypertarget{strikethrough}{%
-\subsection{Strikethrough}\label{strikethrough}}
-
-\begin{itemize}
-\tightlist
-\item
-  \sout{Strikethrough} is done \textasciitilde\textasciitilde like this\textasciitilde\textasciitilde{}
-\end{itemize}
-
-\hypertarget{escaping-aka-what-if-i-need-an-actual-asterisk}{%
-\subsection{`Escaping' (aka ``What if I need an actual asterisk?'')}\label{escaping-aka-what-if-i-need-an-actual-asterisk}}
-
-\begin{itemize}
-\tightlist
-\item
-  To include an actual *, \_ or \textbackslash, add another \textbackslash{} in front of them: \textbackslash*, \textbackslash\_, \textbackslash\textbackslash{}
-\end{itemize}
-
-\hypertarget{endash-emdash}{%
-\subsection{Endash (--), emdash (---)}\label{endash-emdash}}
-
-\begin{itemize}
-\tightlist
-\item
-  -- and --- with -\/- and -\/-\/-
-\end{itemize}
+\hypertarget{results}{%
+\section{Results}\label{results}}
 
-\hypertarget{blockquotes}{%
-\subsection{Blockquotes}\label{blockquotes}}
-
-Do like this:
-
-\begin{quote}
-Put a \textgreater{} in front of the line.
-\end{quote}
-
-\hypertarget{headings}{%
-\subsection{Headings}\label{headings}}
-
-Section headers are created with \#'s of increasing number, i.e.~
-
-\begin{itemize}
-\tightlist
-\item
-  \# First-level heading
-\item
-  \#\# Second-level heading
-\item
-  \#\#\# Etc.
-\end{itemize}
+\hypertarget{filamentation-provides-transient-resistance-under-stressful-conditions}{%
+\subsection{Filamentation provides transient resistance under stressful conditions}\label{filamentation-provides-transient-resistance-under-stressful-conditions}}
 
-In PDF output, a level-five heading will turn into a paragraph heading, i.e.~\texttt{\textbackslash{}paragraph\{My\ level-five\ heading\}}, which appears as bold text on the same line as the subsequent paragraph.
+When growing rod-shaped bacterial cells under constant conditions, the distribution of lengths and radii is narrow {[}3{]}. However, when growing under stress conditions, some cells produce filaments {[}4{]}. This phenomenon may depend on the SOS response system {[}5{]}, which can repair DNA damage, giving the cell greater chances of recovering and surviving under stress conditions. Besides, the SOS response has been reported to have precise temporal coordination in individual bacteria {[}6{]}. Among the stress conditions that can trigger the SOS response is exposure to beta-lactam antibiotics {[}7{]}.
 
-\hypertarget{lists}{%
-\subsection{Lists}\label{lists}}
+In general, filamentation has been studied as an unavoidable consequence of stress. However, we considered filamentation an active process that produces the first line of defense against toxic agents. Therefore, a differential equation model was proposed that assesses the change in the amount of internal toxin as a function of cell length. At the core of this model, we include the intrinsic relationship between the surface area and the capsule volume since it is vital in determining cell size {[}8{]}.
 
-Unordered list by starting a line with an * or a -:
+\href{}{Figure 1} Cells growth in a ramp-shaped external toxin signal without considering a toxin-antitoxin system. As time progresses, the toxin in the external environment increases, so the cell raises its internal toxin levels. At approximately time 22, any cell reaches \(T_{sos}\). The control cell (unable to filament) and the average cell (capable of filamenting) reach the death threshold, \(T_{kill}\), at times 31 and 93 (hatched and solid black lines), respectively. Therefore, under this example, the cell has increased its life span three times more than in control by growing as a filament (green shaded area versus orange shaded area). In turn, \href{}{Figure 1} also shows stochastic simulations of the system in the intake of internal toxins. Considering that cell growth and death processes are inherently stochastic, stochastic simulations would be a better approximation. However, from now on, we will continue with the study of the deterministic model.
 
-\begin{itemize}
-\tightlist
-\item
-  Item 1
-\item
-  Item 2
-\end{itemize}
+\hypertarget{filamentation-increases-the-minimum-inhibitory-concentration}{%
+\subsection{Filamentation increases the minimum inhibitory concentration}\label{filamentation-increases-the-minimum-inhibitory-concentration}}
 
-Ordered lists by starting a line with a number.
-Notice that you can mislabel the numbers and \emph{Markdown} will still make the order right in the output:
+Antimicrobial resistance (AMR) can be considered one of the most critical health problems of the century. That is, microorganisms' ability to grow despite exposure to substances designed to inhibit their growth or kill them. In April 2014, the World Health Organization (WHO) published its first global report on AMR surveillance {[}9{]}. Taking out of the darkness a common fear, a possible post-antibiotic future in which common infections or minor injuries can kill. Therefore, understanding the mechanisms of avoiding antibiotic action is essential for producing knowledge and developing strategies that reduce the generation of resistant bacteria.
 
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\tightlist
-\item
-  Item 1
-\item
-  Item 2
-\end{enumerate}
+A classic experiment in laboratories finds the concentration that inhibits bacterial growth through exposure to different toxin doses. The concentration found is known as the minimum inhibitory concentration (MIC) {[}10{]}. Bacteria are capable of modifying their MIC through various mechanisms, for example, mutations {[}11{]}, impaired membrane permeability {[}12{]}, flux pumps {[}13{]}, toxin-inactivating enzymes {[}14{]}, and plasticity phenotypic {[}1{]}. The latter is our phenomenon of interest because it considers the change in shape and size, allowing us to study it as a strategy to promote bacterial survival.
 
-To create a sublist, indent the values a bit (at least four spaces or a tab):
+We decided to analyze the MIC change caused by filamentation through stable exposure experiments of different toxin amounts at other exposure times. Computational simulations show that when comparing cells unable to filament with those that can, there is an increase in the capacity to tolerate more generous amounts of toxin, increasing their MIC (see \href{}{Figure 2}). Therefore, it confers a gradual increase in resistance beyond filamentation's role in improving the cell's life span as the exposure time is longer.
 
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\tightlist
-\item
-  Item 1
-\item
-  Item 2
-\item
-  Item 3
+\hypertarget{heterogeneity-in-the-toxin-antitoxin-system-represents-a-double-edged-sword-in-survival-probability}{%
+\subsection{Heterogeneity in the toxin-antitoxin system represents a double-edged sword in survival probability}\label{heterogeneity-in-the-toxin-antitoxin-system-represents-a-double-edged-sword-in-survival-probability}}
 
-  \begin{itemize}
-  \tightlist
-  \item
-    Item 3a
-  \item
-    Item 3b
-  \end{itemize}
-\end{enumerate}
+One of the SOS response system properties is that it presents synchronous activation times within homogeneous populations {[}6{]}. It has constant gene expression rates that help it cope with stress; however, it is possible to introduce variability by considering having multicopy resistance plasmids {[}15{]}. Therefore, the response times would have an asynchronous behavior at the global level but synchronous at the local level.
 
-\hypertarget{line-breaks}{%
-\subsection{Line breaks}\label{line-breaks}}
+To include this observation into the model, we include a negative term to the internal toxin representing a toxin-antitoxin system. Therefore, the model now has an efficiency rate of the antitoxin and a stable amount per cell. We simulate the effect of the toxin-antitoxin system variation within a \(1000\) cell population; we initialize each one with similar initial conditions, except for the amount of internal antitoxin, defined as \(T_{anti} \sim N(\mu, \sigma)\). Considering that \(T_{anti}\) values \(< 0\) are equal to \(0\). For each experiment,\(\mu = 25\), while it was evaluated in the range \([0-20]\). For the generation of pseudo-random numbers and to ensure the results' reproducibility, the number \(42\) was considered seed.
 
-The official \emph{Markdown} way to create line breaks is by ending a line with more than two spaces.
+As shown in \href{}{Figure 3}, when we compare heterogeneous populations in their toxin-antitoxin system, we can achieve different population dynamics, that is, changes in the final proportions of cell states; normal, stressed, and dead. This difference is because the cell sometimes has more or less antitoxin to handle the incoming stress situation.
 
-Roses are red.
-Violets are blue.
+Considering that the toxin-antitoxin system's variability can modify the proportions of final cell states, a question arose about heterogeneity levels' global behavior. To answer this question, we evaluate the probability of survival for each population, defined by its distribution of antitoxin levels. In this way, we characterized the population survival probability function into three essential points according to its effect: negative, invariant, and positive (see \href{}{Figure 4}). Furthermore, these points are relative to the homogeneous population's death time in question (\(\tau_{kill}\)): when \(t < \tau_{kill}\) will represent a detrimental effect on survival, \(t = \tau_{kill}\) will be independent of variability, and \(t > \tau_{kill}\) will be a beneficial point for survival. Therefore, we concluded that the effect of heterogeneity in a toxin-antitoxin system represents a double-edged sword.
 
-This appears on the same line in the output, because we didn't add spaces after red.
+\hypertarget{discussion}{%
+\section{Discussion}\label{discussion}}
 
-Roses are red.\\
-Violets are blue.
+Today, there have been advancements in the number of techniques that have allowed it to extend quantitative analyses to individual cells' dynamic observations {[}16-20{]}. Therefore, studying their cellular behavior every day from medium to medium can be somewhat reproducible, facilitating the association of complex biological functions in simple mathematical equations {[}21{]}.
 
-This appears with a line break because I added spaces after red.
+Here, we proposed a mathematical model showing that filamentation could serve as a population's resilience mechanism to stress conditions. Finding that filamentation's net effect generates an additional window of time for the cell to survive, decreasing the toxin's intracellular concentration. However, we also found that a side effect of filamentation is to increase the cell's minimum inhibitory concentration. On the other hand, when we introduce variability in the amount of antitoxin in a cell population, we found that heterogeneity can be a double-edged sword, sometimes detrimental and sometimes beneficial, depending on the time of exposure to the toxic agent.
 
-I find this is confusing, so I recommend the alternative way: Ending a line with a backslash will also create a linebreak:
-
-Roses are red.\\
-Violets are blue.
-
-To create a new paragraph, you put a blank line.
-
-Therefore, this line starts its own paragraph.
-
-\hypertarget{hyperlinks}{%
-\subsection{Hyperlinks}\label{hyperlinks}}
-
-\begin{itemize}
-\tightlist
-\item
-  \href{https://www.google.com}{This is a hyperlink} created by writing the text you want turned into a clickable link in \texttt{{[}square\ brackets\ followed\ by\ a{]}(https://hyperlink-in-parentheses)}
-\end{itemize}
-
-\hypertarget{footnotes}{%
-\subsection{Footnotes}\label{footnotes}}
-
-\begin{itemize}
-\tightlist
-\item
-  Are created\footnote{my footnote text} by writing either \^{}{[}my footnote text{]} for supplying the footnote content inline, or something like \texttt{{[}\^{}a-random-footnote-label{]}} and supplying the text elsewhere in the format shown below \footnote{This is a random test.}:
-\end{itemize}
-
-\texttt{{[}\^{}a-random-footnote-label{]}:\ This\ is\ a\ random\ test.}
-
-\hypertarget{comments}{%
-\subsection{Comments}\label{comments}}
-
-To write comments within your text that won't actually be included in the output, use the same syntax as for writing comments in HTML. That is, \textless!-\/- this will not be included in the output -\/-\textgreater.
-
-\hypertarget{math}{%
-\subsection{Math}\label{math}}
-
-The syntax for writing math is stolen from LaTeX. To write a math expression that will be shown \textbf{inline}, enclose it in dollar signs.
-- This: \$A = \textbackslash pi*r\^{}\{2\}\$ Becomes: \(A = \pi*r^{2}\)
-
-To write a math expression that will be shown in a block, enclose it in two dollar signs.\\
-This: \$\$A = \textbackslash pi*r\^{}\{2\}\$\$
-
-Becomes:
-\[A = \pi*r^{2}\]
-
-To create numbered equations, put them in an `equation' environment and give them a label with the syntax \texttt{(\textbackslash{}\#eq:label)}, like this:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{\textbackslash{}begin}\NormalTok{\{}\ExtensionTok{equation}\NormalTok{\}}\SpecialStringTok{ }
-\SpecialStringTok{  f}\SpecialCharTok{\textbackslash{}left}\SpecialStringTok{(k}\SpecialCharTok{\textbackslash{}right}\SpecialStringTok{) = }\SpecialCharTok{\textbackslash{}binom}\SpecialStringTok{\{n\}\{k\} p\^{}k}\SpecialCharTok{\textbackslash{}left}\SpecialStringTok{(1{-}p}\SpecialCharTok{\textbackslash{}right}\SpecialStringTok{)\^{}\{n{-}k\}}
-\SpecialStringTok{  (}\SpecialCharTok{\textbackslash{}\#}\SpecialStringTok{eq:binom)}
-\KeywordTok{\textbackslash{}end}\NormalTok{\{}\ExtensionTok{equation}\NormalTok{\} }
-\end{Highlighting}
-\end{Shaded}
-
-Becomes:
-\begin{equation}
-f\left(k\right)=\binom{n}{k}p^k\left(1-p\right)^{n-k}
-\label{eq:binom}
-\end{equation}
-
-For more (e.g.~how to theorems), see e.g.~the documentation on \href{https://bookdown.org/yihui/bookdown/markdown-extensions-by-bookdown.html\#equations}{bookdown.org}
-
-\hypertarget{code}{%
-\section{Executable code chunks}\label{code}}
-
-The magic of R Markdown is that we can add executable code within our document to make it dynamic.
-
-We do this either as \emph{code chunks} (generally used for loading libraries and data, performing calculations, and adding images, plots, and tables), or \emph{inline code} (generally used for dynamically reporting results within our text).
-
-The syntax of a code chunk is shown in Figure \ref{fig:chunk-parts}.
-
-\begin{figure}[H]
-\includegraphics[width=1\linewidth]{figures/sample-content/chunk-parts} \caption{Code chunk syntax}\label{fig:chunk-parts}
-\end{figure}
-
-Common chunk options include (see e.g.~\href{https://bookdown.org/yihui/rmarkdown/r-code.html}{bookdown.org}):
-
-\begin{itemize}
-\tightlist
-\item
-  \texttt{echo}: whether or not to display code in knitted output
-\item
-  \texttt{eval}: whether or to to run the code in the chunk when knitting
-\item
-  \texttt{include}: whether to include anything from the from a code chunk in the output document
-\item
-  \texttt{fig.cap}: figure caption
-\item
-  \texttt{fig.scap}: short figure caption, which will be used in the `List of Figures' in the PDF front matter
-\end{itemize}
-
-\textbf{IMPORTANT}: Do \emph{not} use underscoores in your chunk labels - if you do, you are likely to get an error in PDF output saying something like ``! Package caption Error: \textbackslash caption outside float''.
-
-\hypertarget{setup-chunks---setup-images-plots}{%
-\subsection{Setup chunks - setup, images, plots}\label{setup-chunks---setup-images-plots}}
-
-An R Markdown document usually begins with a chunk that is used to \textbf{load libraries}, and to \textbf{set default chunk options} with \texttt{knitr::opts\_chunk\$set}.
-
-In your thesis, this will probably happen in \textbf{index.Rmd} and/or as opening chunks in each of your chapters.
-
-\begin{verbatim}
-```{r setup, include=FALSE}
-# don't show code unless we explicitly set echo = TRUE
-knitr::opts_chunk$set(echo = FALSE)
-
-library(tidyverse)
-```
-\end{verbatim}
-
-\hypertarget{including-images}{%
-\subsection{Including images}\label{including-images}}
-
-Code chunks are also used for including images, with \texttt{include\_graphics} from the \texttt{knitr} package, as in Figure \ref{fig:oxford-logo}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{knitr}\SpecialCharTok{::}\FunctionTok{include\_graphics}\NormalTok{(}\StringTok{"figures/sample{-}content/beltcrest.png"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{figure}
-
-{\centering \includegraphics[width=0.5\linewidth]{figures/sample-content/beltcrest} 
-
-}
-
-\caption{Oxford logo}\label{fig:oxford-logo}
-\end{figure}
-
-Useful chunk options for figures include:
-
-\begin{itemize}
-\tightlist
-\item
-  \texttt{out.width} (use with a percentage) for setting the image size
-\item
-  if you've got an image that gets waaay to big in your output, it will be constrained to the page width by setting \texttt{out.width\ =\ "100\%"}
-\end{itemize}
-
-\hypertarget{figure-rotation}{%
-\subsubsection*{Figure rotation}\label{figure-rotation}}
-\addcontentsline{toc}{subsubsection}{Figure rotation}
-
-You can use the chunk option \texttt{out.extra} to rotate images.
-
-The syntax is different for LaTeX and HTML, so for ease we might start by assigning the right string to a variable that depends on the format you're outputting to:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\ControlFlowTok{if}\NormalTok{ (knitr}\SpecialCharTok{::}\FunctionTok{is\_latex\_output}\NormalTok{())\{}
-\NormalTok{  rotate180 }\OtherTok{\textless{}{-}} \StringTok{"angle=180"}
-\NormalTok{\} }\ControlFlowTok{else}\NormalTok{ \{}
-\NormalTok{  rotate180 }\OtherTok{\textless{}{-}} \StringTok{"style=\textquotesingle{}transform:rotate(180deg);\textquotesingle{}"}
-\NormalTok{\}}
-\end{Highlighting}
-\end{Shaded}
-
-Then you can reference that variable as the value of \texttt{out.extra} to rotate images, as in Figure \ref{fig:oxford-logo-rotated}.
-
-\begin{figure}
-
-{\centering \includegraphics[width=0.5\linewidth,angle=180]{figures/sample-content/beltcrest} 
-
-}
-
-\caption{Oxford logo, rotated}\label{fig:oxford-logo-rotated}
-\end{figure}
-
-\hypertarget{including-plots}{%
-\subsection{Including plots}\label{including-plots}}
-
-Similarly, code chunks are used for including dynamically generated plots.
-You use ordinary code in R or other languages - Figure \ref{fig:cars-plot} shows a plot of the \texttt{cars} dataset of stopping distances for cars at various speeds (this dataset is built in to \textbf{R}).
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{cars }\SpecialCharTok{\%\textgreater{}\%} 
-  \FunctionTok{ggplot}\NormalTok{() }\SpecialCharTok{+}
-    \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ speed, }\AttributeTok{y =}\NormalTok{ dist) }\SpecialCharTok{+}
-    \FunctionTok{geom\_point}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{figure}
-\centering
-\includegraphics{_main_files/figure-latex/cars-plot-1.pdf}
-\caption{\label{fig:cars-plot}A ggplot of car stuff}
-\end{figure}
-
-Under the hood, plots are included in your document in the same way as images - when you build the book or knit a chapter, the plot is automatically generated from your code, saved as an image, then included into the output document.
-
-\hypertarget{including-tables}{%
-\subsection{Including tables}\label{including-tables}}
-
-Tables are usually included with the \texttt{kable} function from the \texttt{knitr} package.
-
-Table \ref{tab:cars-table} shows the first rows of that cars data - read in your own data, then use this approach to automatically generate tables.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{cars }\SpecialCharTok{\%\textgreater{}\%} 
-  \FunctionTok{head}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%} 
-\NormalTok{  knitr}\SpecialCharTok{::}\FunctionTok{kable}\NormalTok{(}\AttributeTok{caption =} \StringTok{"A knitr kable table"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{table}
-
-\caption{\label{tab:cars-table}A knitr kable table}
-\centering
-\begin{tabular}[t]{r|r}
-\hline
-speed & dist\\
-\hline
-4 & 2\\
-\hline
-4 & 10\\
-\hline
-7 & 4\\
-\hline
-7 & 22\\
-\hline
-8 & 16\\
-\hline
-9 & 10\\
-\hline
-\end{tabular}
-\end{table}
-
-\begin{itemize}
-\tightlist
-\item
-  Gotcha: when using \href{https://www.rdocumentation.org/packages/knitr/versions/1.21/topics/kable}{\texttt{kable}}, captions are set inside the \texttt{kable} function
-\item
-  The \texttt{kable} package is often used with the \href{https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_html.html}{\texttt{kableExtra}} package
-\end{itemize}
-
-\hypertarget{control-positioning}{%
-\subsection{Control positioning}\label{control-positioning}}
-
-One thing that may be annoying is the way \emph{R Markdown} handles ``floats'' like tables and figures.
-In your PDF output, LaTeX will try to find the best place to put your object based on the text around it and until you're really, truly done writing you should just leave it where it lies.
-
-In general, you should allow LaTeX to do this, but if you really \emph{really} need a figure to be positioned where you put in the document, then you can make LaTeX attempt to do this with the chunk option \texttt{fig.pos="H"}, as in Figure \ref{fig:oxford-logo-controlled}:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{knitr}\SpecialCharTok{::}\FunctionTok{include\_graphics}\NormalTok{(}\StringTok{"figures/sample{-}content/beltcrest.png"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{figure}[H]
-
-{\centering \includegraphics[width=0.5\linewidth]{figures/sample-content/beltcrest} 
-
-}
-
-\caption{An Oxford logo that LaTeX will try to place at this position in the text}\label{fig:oxford-logo-controlled}
-\end{figure}
-
-As anyone who has tried to manually play around with the placement of figures in a Word document knows, this can have lots of side effects with extra spacing on other pages, etc.
-Therefore, it is not generally a good idea to do this - only do it when you really need to ensure that an image follows directly under text where you refer to it (in this document, I needed to do this for Figure \ref{fig:latex-font-sizing} in section \ref{max-power}).
-For more details, read the relevant section of the \href{https://bookdown.org/yihui/rmarkdown-cookbook/figure-placement.html}{R Markdown Cookbook}.
-
-\hypertarget{executable-inline-code}{%
-\section{Executable inline code}\label{executable-inline-code}}
-
-`Inline code' simply means inclusion of code inside text.
-The syntax for doing this is \texttt{\textasciigrave{}r\ R\_CODE\textasciigrave{}}
-For example, \texttt{\textasciigrave{}r\ 4\ +\ 4\textasciigrave{}} will output 8 in your text.
-
-You will usually use this in parts of your thesis where you report results - read in data or results in a code chunk, store things you want to report in a variable, then insert the value of that variable in your text.
-For example, we might assign the number of rows in the \texttt{cars} dataset to a variable:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{num\_car\_observations }\OtherTok{\textless{}{-}} \FunctionTok{nrow}\NormalTok{(cars)}
-\end{Highlighting}
-\end{Shaded}
-
-We might then write:\\
-``In the \texttt{cars} dataset, we have \texttt{\textasciigrave{}r\ num\_car\_observations\textasciigrave{}} observations.''
-
-Which would output:\\
-``In the \texttt{cars} dataset, we have 50 observations.''
-
-\hypertarget{executable-code-in-other-languages-than-r}{%
-\section{Executable code in other languages than R}\label{executable-code-in-other-languages-than-r}}
-
-If you want to use other languages than R, such as Python, Julia C++, or SQL, see \href{https://bookdown.org/yihui/rmarkdown-cookbook/other-languages.html}{the relevant section of the \emph{R Markdown Cookbook}}
+Due to the above, despite being simple, the model could have the ability to recapitulate the behavior seen in nature from variables that we can calculate easily with single-cell measurements. However, in other situations, it could be helpful to consider the addition of variables such as cell wall production and peptidoglycans' accumulation, among others. Notwithstanding the lack of parameters that are a little closer to reality, confirming that the model can work under experimental conditions would represent an achievement due to its explanatory simplicity, starting, in this way, the path of the study of filamentation oriented to the ecology of stress.
 
 \hypertarget{cites-and-refs}{%
 \chapter{Citations, cross-references, and collaboration}\label{cites-and-refs}}
@@ -2742,20 +2347,7 @@ This first appendix includes an R chunk that was hidden in the document (using \
 
 \textbf{In 02-rmd-basics-code.Rmd}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(tidyverse)}
-\NormalTok{knitr}\SpecialCharTok{::}\FunctionTok{include\_graphics}\NormalTok{(}\StringTok{"figures/sample{-}content/chunk{-}parts.png"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
 \textbf{And here's another one from the same chapter, i.e.~Chapter \ref{code}:}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{knitr}\SpecialCharTok{::}\FunctionTok{include\_graphics}\NormalTok{(}\StringTok{"figures/sample{-}content/beltcrest.png"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
 
 \hypertarget{the-second-appendix-for-fun}{%
 \chapter{The Second Appendix, for Fun}\label{the-second-appendix-for-fun}}
