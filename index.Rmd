@@ -7,7 +7,7 @@
 # The format options are: 'pdf', 'bs4', 'gitbook', 'word'
 # E.g. you can build both pdf and html with 'thesis_formats <- c("pdf", "bs4")'
 knit: (function(input, ...) {
-    thesis_formats <- c("pdf", "gitbook", "bs4");
+    thesis_formats <- c("pdf");
     
     source("scripts_and_filters/knit-functions.R");
     knit_thesis(input, thesis_formats, ...)
@@ -16,18 +16,15 @@ knit: (function(input, ...) {
 #####################
 ## thesis metadata ##
 #####################
-title: |
-  `oxforddown`: \
-  An Oxford University Thesis \
-  Template for R Markdown
-author: Author Name
-college: Your College
-university: University of Oxford
-university-logo: templates/beltcrest.pdf
+title: 'Bacterial filamentation: a bet for survival in stressful environments'
+author: Jesús Vélez Santiago
+college: Bachelor of Genomic Sciences
+university: National Autonomous University of Mexico
+university-logo: templates/UNAM_logo.png
 university-logo-width: 5cm
 submitted-text: A thesis submitted for the degree of
-degree: Doctor of Philosophy
-degreedate: Michaelmas 2018
+degree: Bachelor of Science
+degreedate: 'Cuernavaca, Morelos, Mexico - `r format(Sys.Date(), "%Y-%m")`'
 abstract: |
   `r paste(readLines("front-and-back-matter/_abstract.Rmd"), collapse = '\n  ')`
 acknowledgements: |
