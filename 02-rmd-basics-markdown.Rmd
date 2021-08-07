@@ -41,7 +41,7 @@ By integrating information from the environment, cells can alter their cell cycl
 
 Although filament growth can help mitigate environmental stress (e.g., by activating the SOS response system [1]), the evolutionary benefits of producing elongated cells that do not divide are unclear. Here, we proposed a mathematical model based on ordinary differential equations that explicitly considers the concentration of intracellular toxin as a function of the cell’s length (see Equation \@ref(eq:model-equation)). The model is built based on the growth ratio of measurements of the surface area (SA) and the cell volume (V), whereby the uptake rate of the toxin depends on the SA. However, V's rate of change for SA is higher than SA for V, which results in a transient reduction in the intracellular toxin concentration (see Figure \@ref(fig:cell-dimensions-relationship)). Therefore, we hypothesized that this geometric interpretation of filamentation represents a biophysical defense line to increase the probability of a bacterial population’s survival in response to stressful environments.
 
-```{r cell-dimensions-relationship, fig.align='center', echo=FALSE, fig.cap="Do something coooooool", out.width='75%', fig.pos='H'}
+```{r cell-dimensions-relationship, fig.align='center', echo=FALSE, fig.cap="Cell dimensions relationship.", out.width='100%', fig.pos='H'}
 if(knitr::is_html_output()){
   knitr::include_graphics("https://raw.githubusercontent.com/jvelezmagic/CellFilamentation/main/plots/cell_dimensions_relationship.svg")
 } else {
@@ -81,8 +81,14 @@ In figure \@ref(fig:filamentation-model-ramp-signal), cells grow in a ramp-shape
 filamentation_model_ramp_signal_cap <- "Effect of filamentation on intracellular toxin concentration. In the presence of an extracellular toxic agent, the intracellular concentration of the toxin ($T_{int}$) increases until reaching a damage threshold that triggers filamentation ($T_{sos}$, blue point), increasing cell length ($L$). When filamentation is on, the cell decreases $T_{int}$ due to the intrinsic relationship between surface area and cell volume. When the cell reaches its maximum length, it eventually dies if the stressful stimulus is not removed ($T_{kill}$, red dot). The hatched line represents a cell that can not grow as filament. The orange shaded area is the time between stress and the non-filament cell's death, while the green shaded area represents the temporal gain for doing so. The blue background lines represent stochastic simulations of the same system."
 ```
 
-```{r filamentation-model-ramp-signal, fig.pos='H', out.width="100%", echo=FALSE, results='asis', fig.cap=filamentation_model_ramp_signal_cap}
+Fisrt attempt
+
+```{r filamentation-model-ramp-signal, fig.pos='H', out.width="100%",out.height='1000px', echo=FALSE, results='asis', fig.cap=filamentation_model_ramp_signal_cap, fig.scap="Effect of filamentation on intracellular toxin concentration."}
 linguisticsdown::include_graphics2("https://github.com/jvelezmagic/CellFilamentation/raw/main/plots/filamentation_model_ramp_signal.pdf")
+```
+
+```{r filamentation-model-ramp-signal2, fig.pos='H', out.width="100%", echo=FALSE, fig.cap=filamentation_model_ramp_signal_cap, fig.scap="Effect of filamentation on intracellular toxin concentration."}
+knitr::include_graphics("https://raw.githubusercontent.com/jvelezmagic/CellFilamentation/main/plots/filamentation_model_ramp_signal.svg")
 ```
 
 ### Filamentation increases the minimum inhibitory concentration
