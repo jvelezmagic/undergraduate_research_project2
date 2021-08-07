@@ -2,6 +2,7 @@ fig:cell-dimensions-relationship
 eq:model-equation
 fig:filamentation-model-ramp-signal
 fig:filamentation-model-ramp-signal2
+fig:filamentation-model-ramp-signal3
 experiment-analysis
 how-oxforddown-is-structured
 index.rmd-metadata-and-layout-options
