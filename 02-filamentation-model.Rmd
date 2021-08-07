@@ -93,12 +93,6 @@ Second
 knitr::include_graphics("figures/filamentation_model_ramp_signal-1.png")
 ```
 
-Third
-
-```{r filamentation-model-ramp-signal3, fig.pos='H', out.width="100%", echo=FALSE, fig.cap=filamentation_model_ramp_signal_cap, fig.scap="Effect of filamentation on intracellular toxin concentration."}
-knitr::include_graphics("figures/filamentation_model_ramp_signal.png")
-```
-
 ### Filamentation increases the minimum inhibitory concentration
 
 Antimicrobial resistance (AMR) can be considered one of the most critical health problems of the century. That is, microorganisms' ability to grow despite exposure to substances designed to inhibit their growth or kill them. In April 2014, the World Health Organization (WHO) published its first global report on AMR surveillance [9]. Taking out of the darkness a common fear, a possible post-antibiotic future in which common infections or minor injuries can kill. Therefore, understanding the mechanisms of avoiding antibiotic action is essential for producing knowledge and developing strategies that reduce the generation of resistant bacteria.
